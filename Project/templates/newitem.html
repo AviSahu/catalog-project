@@ -1,0 +1,44 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row divider green">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner menu">
+		<div class="col-md-11 col-md-offset-1 padding-none">
+			<h1>New Item</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1 padding-top">
+			<form action="#" method = "post">
+				<div class="form-group">
+					<label for="title">Title:</label>
+					<textarea class="form-control" maxlength="250" rows="3" name="title"></textarea>
+
+					<label for="description">Description:</label>
+					<textarea class="form-control" maxlength="250" rows="3" name="description"></textarea>
+
+					<label for="price">Price:</label>
+					<div class="input-group">
+						<div class="input-group-addon">$</div>
+						<input type ="text" maxlength="10" class="form-control" name="price" value="0.00">
+					</div>
+					<label for="course">Categories:</label>
+					<select name="categories">
+							<option value= "Please select Category" SELECTED>Please select Category</option>
+						{% for Cat in catalogs%}
+							<option value = "{{Cat.name}}"{% if loop.first %} {% endif %}>{{Cat.name}}</option>
+						{% endfor %}
+					</Select>
+					<br>
+					<br>
+
+					<button type="submit" class="btn btn-default" id="submit" type="submit">
+					<span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Create</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
+

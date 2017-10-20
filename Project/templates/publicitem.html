@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+	<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+	</div>
+
+	<main class="row">
+		<section class="col-md-12">
+			<h2>{{item.name}}</h2>
+			<hr>
+			<p>{{item.description}}</p>
+		</section>
+	</main>
+
+{% endblock %}

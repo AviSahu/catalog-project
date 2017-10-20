@@ -1,0 +1,69 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+	<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+	</div>
+
+
+
+	<div class="row padding-top padding-bottom">
+		<div class="col-md-1"></div>
+		<div class="col-md-10 padding-none">
+
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	<main class="row">
+		<section class="col-md-3 verticalLine">
+			<h2>Categories</h2>
+			<div class="Scroll">
+			{% for cat in catalogUniqueName %}
+				<a href = "{{url_for('showCateg', catalog_name = cat.name)}}">
+					<div class="row">
+						<div class="col-md-1"></div>
+							<div class="col-md-10 restaurant-list">
+								<h3>{{cat.name}}</h3>
+							</div>
+						<div class="col-md-1"></div>
+					</div>
+				</a>
+			{% endfor %}
+			</div>
+		</section>
+		<section class="col-md-8 ">
+			<a href = "{{url_for('newItem')}}">Add Items</a>
+			<hr>
+			<h2>Latest Items</h2>
+			<div class="Scroll">
+			{% for item in items %}
+				{% for cat in catalogs %}
+					{% if item.catalog_id == cat.id %}
+						<a href = "{{url_for('showItem', catalog_name = cat.name, item_name = item.name)}}">
+							<div class="row">
+								<div class="col-md-1"></div>
+									<div class="col-md-10 restaurant-list">
+										<h3>{{item.name}} ({{cat.name}})</h3>
+									</div>
+								<div class="col-md-1"></div>
+							</div>
+						</a>
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+			</div>
+		</section>
+	</main>
+
+{% endblock %}
